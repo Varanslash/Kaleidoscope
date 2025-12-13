@@ -28,7 +28,8 @@ The define function takes strings (no whitespace) as its arguments. This is what
 The interpreter function takes a string as its argument (this would be the finished program you wish to run) and processes it (lexing, parsing, interpreting), and executes according to your syntax dict definitions.
 
 The code looks like this:
-```syntax = {
+```
+syntax = {
 
 }
 
@@ -46,14 +47,14 @@ def interpreter(program):
         if token not in syntax:
             print(errormessage)
         else:
-            exec(str(syntax[token]))``
+            exec(str(syntax[token]))```
 
 ### syntaxfunc.py
 
 syntaxfunc.py is a module that includes a set of pre-built syntax + an execution function (called syntaxprocessor). The prebuilt syntax is mapped to individual Python tokens to allow for dynamic if/then statements. In order to make other dynamic conditional, such as loops, you will need to map to Python or execute other code.
 
 The code looks like this:
-``draft = []
+```draft = []
 
 syntax = {
     "if": "if",
@@ -70,7 +71,7 @@ def syntaxprocessor(program):
         else:
             draft.append(item)```
 
-The `draft` list is there to preserve code and run it later, and the syntaxprocessor() function is there for remapping and processing.
+The draft list is there to preserve code and run it later, and the syntaxprocessor() function is there for remapping and processing.
 
 ## DIRECT CODE
 
@@ -251,3 +252,4 @@ Example:
             except Exception:
 
                 print(error)``
+
