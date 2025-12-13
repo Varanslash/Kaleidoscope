@@ -47,14 +47,16 @@ def interpreter(program):
         if token not in syntax:
             print(errormessage)
         else:
-            exec(str(syntax[token]))```
+            exec(str(syntax[token]))
+```
 
 ### syntaxfunc.py
 
 syntaxfunc.py is a module that includes a set of pre-built syntax + an execution function (called syntaxprocessor). The prebuilt syntax is mapped to individual Python tokens to allow for dynamic if/then statements. In order to make other dynamic conditional, such as loops, you will need to map to Python or execute other code.
 
 The code looks like this:
-```draft = []
+```
+draft = []
 
 syntax = {
     "if": "if",
@@ -69,7 +71,8 @@ def syntaxprocessor(program):
             item = syntax[item]
             draft.append(item)
         else:
-            draft.append(item)```
+            draft.append(item)
+```
 
 The draft list is there to preserve code and run it later, and the syntaxprocessor() function is there for remapping and processing.
 
@@ -82,7 +85,8 @@ The Direct Code folder contains three .py's, meant to be edited directly and pro
 The single-char engine is meant to function with single character syntax (like Brainfuck). Its code is also stored in a dict but you can also edit prerequisite code (code executed before the dict code) in the match statement, **i** section.
 
 The **i** section should look like this:
-```        while i < len(userinput):
+```
+        while i < len(userinput):
             ch = userinput[i]
             match ch:
                 case "x":
@@ -104,21 +108,25 @@ The **i** section should look like this:
                 case "x":
                     code = syntax[ch]
                     exec(code)
-                    i += 1```
+                    i += 1
+```
 
 This is what executes the code from the syntax dict. You can change the code in the syntax dict to match up with your single-char token, and also add code that executes before your syntax dict code does, mainly for debugging.
 
 Example:
-```               case "$":
+```
+                case "$":
                     print("This is prerequesite code")
                     code = syntax[ch] # This sets the execution code
                     exec(code)
-                    i += 1```
+                    i += 1
+```
 
 An **n** section is also included in the match statement, mainly for setting addresses or indexes for more complex operations such as loops.
 
 It looks as such:
-```        while n < len(userinput):
+```
+        while n < len(userinput):
             ch = userinput[n]
             match ch:
                 case "x":
@@ -134,21 +142,25 @@ It looks as such:
                 case "x":
                     n += 1
                 case "x":
-                    n += 1```
+                    n += 1
+```
 
 This, if you aren't making anything complex, can be untouched entirely. But if your goal is to make something more complex than Brainfuck without loops, then it may be required to use.
 
 Example:
-```                case "x":
+```
+                case "x":
                     index.append(n) # This is simply a placeholder for whatever indexing routine you use
-                    n += 1```
+                    n += 1
+```
 
 ### INSTRUCTION SET ENGINE
 
 The instruction set engine is built to handle custom high-level and low-level instructions, as assembly uses, but syntax + semantics must be constructed themselves, and routines/functions and loops be crafted by the author themselves.
 
 The lexer/parser/interpreter looks like this:
-```def interpreter(program):
+```
+def interpreter(program):
     i = 0
     try:
         if i == log.index(-1):
@@ -163,20 +175,24 @@ The lexer/parser/interpreter looks like this:
                     case ["plc", reg, reg2] if reg in registers and reg2 in registers: # [Lists = Parser]
                         pass
             except Exception:
-                print("error")```
+                print("error")
+```
 
 This function contains the entire Lexer Parser Interpreter loop. You replace the "plc" instruction with whatever instructions you add, and its semantics below the case statement.
 Example:
-```            try:
+```
+            try:
                 match instr.split():
                     case ["add", reg, reg2] if reg in registers and reg2 in registers: # Instruction
                         reg += reg2 # Semantics
             except Exception:
-                print("error")```
+                print("error")
+```
 
 The file also contains a JSON input system, which allows your programs to work.
 It should look like this:
-```try:
+```
+try:
     with open(filename, "r") as macro:
         program = json.load(macro)
         for line in program:
@@ -202,19 +218,23 @@ try:
 
 except SystemExit:
     with open(filename, "w") as macro:
-        json.dump(program, macro)```
+        json.dump(program, macro)
+```
 
 This, as you can see, also contains /slash commands reminiscent of Discord or Minecraft. These /slash commands are used to control the file outside of the program (for things of user's convenience, such as /erase, which erases a program).
 Example:
-```try:
+```
+try:
     while True:
         userinput = input()
         if userinput == "/exit":
-            raise SystemExit```
+            raise SystemExit
+```
 
 Finally, there is a set of variables at the top of the program. These should be edited to your own functionality/convenience.
 It looks like this:
-```import json
+```
+import json
 
 filename = "placeholder"
 program = []
@@ -226,13 +246,15 @@ registers = {}
 i = 0
 j = 0
 log = []
-backup = []```
+backup = []
+```
 
 ### REPL ENGINE
 
 There is a simple REPL/Interactive Shell engine contained in the Direct Code folder.
 The code looks like this:
-```variables = {}
+```
+variables = {}
 error = "error"
 
 while True:  # Loop
@@ -242,14 +264,17 @@ while True:  # Loop
             try:  # Eval
                 variables[var] = int(value)
             except Exception:
-                print(error)```
+                print(error)
+```
 
 Simply put, this takes a single line of code and parses it instantly. Setting works like the instruction set file.
 Example:
-``        case ["set", var, value]:  # Read
+```
+        case ["set", var, value]:  # Read
             try:  # Eval
                 variables[var] = int(value)
             except Exception:
 
-                print(error)``
+                print(error)```
+
 
