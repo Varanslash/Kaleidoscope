@@ -1,0 +1,3 @@
+So I've started to add progress logs, just as I am doing in my A- repository. I added the language here in the Examples folder as it works off of this framework, and was the source of the Double Pass Interrupt engine in Direct Code. I've also taken the liberty of reorganizing the repo in general so it looks more like it would in Releases if you downloaded a .zip. I have a few things to do still, like update the docs for the Double Pass and acknowledge the new folders, as well as the license. After that, I'll ship 1.2! I don't have any code to share but I'd appreciate it if you looked through the code and maybe tried out the framework for yourself.
+
+Goodbye everyone!
