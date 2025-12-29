@@ -1,0 +1,1 @@
+["reg flag cond", "set flag cond True", "if cond test", "sprt if_branch", "else cond test", "sprt else_branch", "end if cond test", "sprt after_if"]
