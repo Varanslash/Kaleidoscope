@@ -4,7 +4,7 @@ fn main() {
     let mut input_ = String::new();
     let mut reg_a: i32 = 0;
     loop {
-        println!("Dyson> ");
+        println!("> ");
         io::stdin().read_line(&mut input_).expect("Failed to read line!");
         let mut runthrough: Vec<&str> = input_.split_whitespace().collect();
 
@@ -24,4 +24,5 @@ fn main() {
     runthrough.clear();
     input_.clear();
     }
+
 }
